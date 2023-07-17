@@ -1,0 +1,62 @@
+.orderCard {
+  width: 100%;
+  height: fit-content;
+  background: var(--main-red);
+  position: relative;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.orderCard p {
+  z-index: 1;
+  color: white;
+}
+.orderCard small {
+  z-index: 1;
+}
+
+.orderCard::before {
+  content: "";
+  position: absolute;
+  width: 160%;
+  background-image: linear-gradient(180deg, #febe42, #ca1f26);
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orderCard::after {
+  content: "";
+  position: absolute;
+  background: var(--main-black);
+  inset: 5px;
+  border-radius: 15px;
+}
+
+.order-data {
+  position: relative;
+}
+.order-data:not(:last-child)::after {
+  position: absolute;
+  content: "";
+  background-image: linear-gradient(180deg, #febe42, #ca1f26);
+  width: 100%;
+  height: 1px;
+  bottom: -3px;
+  left: 0;
+  z-index: 100;
+}

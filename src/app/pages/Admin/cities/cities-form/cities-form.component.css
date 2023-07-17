@@ -1,0 +1,32 @@
+.city-form {
+  background-image: url("../../../../../assets/pattern1.png");
+}
+.page-header {
+  background-image: url("../../../../../assets/new-location.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+.page-header::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.page-header h3 {
+  z-index: 1;
+}
+
+.button {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}

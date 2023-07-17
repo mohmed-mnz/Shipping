@@ -1,0 +1,42 @@
+<div class="services section-padding">
+  <div class="container">
+    <div class="head-title">
+      <p>What We Do</p>
+      <h3>We give you complete control on shipments.</h3>
+    </div>
+    <div class="row mt-5 align-items-center justify-content-center gy-4">
+      <ng-container *ngFor="let item of servicesList">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          class="col-md-6 col-lg-4"
+        >
+          <div
+            class="service-box rounded-4 overflow-hidden bg-white d-flex flex-column gap-3"
+          >
+            <div class="service-img overflow-hidden">
+              <img
+                src="{{ item.img }}"
+                class="img-fluid w-100 d-block"
+                alt="service"
+              />
+            </div>
+            <div class="service-info p-3">
+              <div
+                class="service-title fs-4 fw-bold mb-2 d-flex align-items-center justify-content-between"
+              >
+                <h5>{{ item.title }}</h5>
+                <p><i class="{{ item.icon }}"></i></p>
+              </div>
+              <p class="mt-1 mb-4">{{ item.desc }}</p>
+              <button class="custom-button d-flex gap-2 align-items-center">
+                <span><i class="fa-solid fa-right-long"></i></span>
+                <span>Read More</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,274 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">
+      {{ id != 0 ? "Update" : "Add" }} Delivery
+    </h3>
+  </div>
+
+  <div class="section-padding delivery-form">
+    <div class="container">
+      <div class="head-title">
+        <p>Delivery Data</p>
+        <h3>Always Good To Make Our Business Bigger</h3>
+      </div>
+      <form
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        [formGroup]="DeleveryForm"
+        (submit)="submit($event)"
+      >
+        <div class="row my-5 align-items-start justify-content-center gy-5">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input
+              name="name"
+              formControlName="name"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="name"
+              placeholder="Enter Delivery Name"
+            />
+            <ng-container
+              *ngIf="
+                DeleveryForm.get('name')?.invalid &&
+                DeleveryForm.get('name')?.touched
+              "
+            >
+              <div
+                *ngIf="DeleveryForm.get('name')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Delivery Name is required
+              </div>
+              <div
+                *ngIf="DeleveryForm.get('name')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Name Must Be Between 5 to 25 Characters
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">E-Mail</label>
+            <input
+              name="email"
+              formControlName="email"
+              type="email"
+              class="rounded-3 w-100 p-2"
+              id="email"
+              placeholder="Enter Delivery E-Mail"
+            />
+            <ng-container
+              *ngIf="
+                DeleveryForm.get('email')?.invalid &&
+                DeleveryForm.get('email')?.touched
+              "
+            >
+              <div
+                *ngIf="DeleveryForm.get('email')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Delivery Email is required
+              </div>
+              <div
+                *ngIf="DeleveryForm.get('email')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Enter Valid Email
+              </div>
+            </ng-container>
+            <div *ngIf="EmailFlag == true" class="form-text text-danger">
+              Email Is Already Exist
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="phone" class="form-label">Phone</label>
+            <input
+              name="phone"
+              formControlName="phone"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="phone"
+              placeholder="Enter Delivery Phone"
+            />
+            <ng-container
+              *ngIf="
+                DeleveryForm.get('phone')?.invalid &&
+                DeleveryForm.get('phone')?.touched
+              "
+            >
+              <div
+                *ngIf="DeleveryForm.get('phone')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Phone is required
+              </div>
+              <div
+                *ngIf="DeleveryForm.get('phone')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Enter Valid Phone Number
+              </div>
+            </ng-container>
+            <div *ngIf="PhoneFlag == true" class="form-text text-danger">
+              Phone Is Already Exist
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input
+              name="password"
+              formControlName="password"
+              type="password"
+              class="rounded-3 w-100 p-2"
+              id="password"
+              placeholder="Enter Delivery Password"
+            />
+            <ng-container
+              *ngIf="
+                DeleveryForm.get('password')?.invalid &&
+                DeleveryForm.get('password')?.touched
+              "
+            >
+              <div
+                *ngIf="DeleveryForm.get('password')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Password is required
+              </div>
+              <div
+                *ngIf="DeleveryForm.get('password')?.errors?.['minlength']"
+                class="form-text text-danger"
+              >
+                Password Should be more than 8 Characters or Numbers
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="branch_Id" class="form-label">Branch</label>
+
+            <select
+              id="branch_Id"
+              formControlName="branch_Id"
+              name="branch_Id"
+              class="rounded-3 w-100 p-2"
+            >
+              <option value="" disabled selected>Select branch</option>
+
+              <ng-container *ngFor="let branch of branches">
+                <option selected value="{{ branch.id }}">
+                  {{ branch.name }}
+                </option>
+              </ng-container>
+            </select>
+            <ng-container
+              *ngIf="
+                DeleveryForm.get('branch_Id')?.invalid &&
+                DeleveryForm.get('branch_Id')?.touched
+              "
+            >
+              <div
+                *ngIf="DeleveryForm.get('branch_Id')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Branch is required
+              </div>
+            </ng-container>
+          </div>
+
+          <div class="col-md-6">
+            <label for="address" class="form-label">Address</label>
+            <input
+              name="address"
+              formControlName="address"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="address"
+              placeholder="Enter Address"
+            />
+            <ng-container
+              *ngIf="
+                DeleveryForm.get('address')?.invalid &&
+                DeleveryForm.get('address')?.touched
+              "
+            >
+              <div
+                *ngIf="DeleveryForm.get('address')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Address is required
+              </div>
+
+              <div
+                *ngIf="DeleveryForm.get('address')?.errors?.['minlength']"
+                class="form-text text-danger"
+              >
+                Address Should be more than 5 characters
+              </div>
+              <div
+                *ngIf="DeleveryForm.get('address')?.errors?.['maxlength']"
+                class="form-text text-danger"
+              >
+                Address Should be more less than 25 characters
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="company_Perc" class="form-label"
+              >Company Percentage</label
+            >
+            <input
+              name="company_Perc"
+              formControlName="company_Perc"
+              type="number"
+              min="0"
+              max="100"
+              class="rounded-3 w-100 p-2"
+              id="company_Perc"
+              placeholder="Enter Company Percentage"
+            />
+            <ng-container
+              *ngIf="
+                DeleveryForm.get('company_Perc')?.invalid &&
+                DeleveryForm.get('company_Perc')?.touched
+              "
+            >
+              <div
+                *ngIf="DeleveryForm.get('company_Perc')?.hasError('required')"
+                class="form-text text-danger"
+              >
+                Company Percentage is required
+              </div>
+              <div
+                *ngIf="DeleveryForm.get('company_Perc')?.hasError('min')"
+                class="form-text text-danger"
+              >
+                Company Percentage must be more or equal 0
+              </div>
+              <div
+                *ngIf="DeleveryForm.get('company_Perc')?.hasError('max')"
+                class="form-text text-danger"
+              >
+                Special Discount Percentage must be less than 100
+              </div>
+            </ng-container>
+          </div>
+          <input
+            formControlName="role_Id"
+            type="number"
+            [value]="4"
+            class="form-control"
+            hidden
+            id="role_Id"
+            name="role_Id"
+          />
+        </div>
+        <button type="submit" class="button">
+          {{ id != 0 ? "Update" : "Add" }} Delivery
+        </button>
+      </form>
+    </div>
+  </div>
+

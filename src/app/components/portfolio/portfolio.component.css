@@ -1,0 +1,20 @@
+.portfolio .project-info {
+  background-color: var(--main-yellow);
+  color: var(--main-red);
+  font-weight: bold;
+}
+.portfolio .img-box .img img {
+  cursor: pointer;
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.portfolio .img-box:hover .img img {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}

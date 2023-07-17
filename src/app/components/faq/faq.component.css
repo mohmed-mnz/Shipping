@@ -1,0 +1,13 @@
+.faq .faq-box {
+  background-color: white;
+  box-shadow: 0px 0px 5px 2px #ccc;
+}
+.faq .faq-box i {
+  color: var(--main-red);
+}
+.faq .faq-box a {
+  cursor: pointer;
+  color: var(--main-black);
+  font-size: 18px;
+  font-weight: bold;
+}

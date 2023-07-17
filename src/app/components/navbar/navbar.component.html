@@ -1,0 +1,245 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img
+        src="assets/logo.png"
+        class="img-fluid me-2 w-50 d-block"
+        alt="Logo"
+      />
+      <h5 class="display-6 fw-bolder">Fas<span>T</span>rans</h5></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink=""
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="about"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >About</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="services"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Services</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="portfolio"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Portfolio</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="contact"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Contact</a
+          >
+        </li>
+        <a *ngIf="userName == null" routerLink="login" class="button"
+          >Login<i class="fa-solid fa-right-to-bracket ms-1"></i
+        ></a>
+        <li *ngIf="userName != null" class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ userName }}
+          </a>
+          <ul class="dropdown-menu">
+            <ng-container *ngIf="roleName == 'Admin'">
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/dashboard"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Dashboard</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/report"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Orders Report</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/weight"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Weight Setting</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/Employees"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Employees</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/customers"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Customers</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/Deliveries"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Deliveries</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/Branches"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Branches</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/Governroates"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Governroates</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="admin/Cities"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Cities</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+            </ng-container>
+            <ng-container *ngIf="roleName == 'Employee'">
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="employee/dashboard"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Dashboard</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="employee/orders"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Orders</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+            </ng-container>
+            <ng-container *ngIf="roleName == 'Customer'">
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="customer/dashboard"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Dashboard</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="order/form/0"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Add Order</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+            </ng-container>
+            <ng-container *ngIf="roleName == 'Delivery'">
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="delivery/dashboard"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Dashboard</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item nav-link bg-transparent"
+                  routerLink="delivery/orders"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >Orders</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+            </ng-container>
+            <li class="d-flex justify-content-center align-items-center">
+              <button (click)="logout($event)" class="dropdown-item button"
+                >Logout<i class="fa-solid fa-right-from-bracket ms-1"></i
+              ></button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

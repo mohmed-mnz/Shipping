@@ -1,0 +1,174 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">Orders</h3>
+  </div>
+
+  <div class="section-padding show-orders">
+    <div class="container">
+      <div class="head-title">
+        <p>Your Orders</p>
+        <h3>Manage The Orders</h3>
+      </div>
+      <div class="orders-table overflow-hidden rounded-3 mt-5 bg-white">
+        <div
+          class="order-header p-2 bg-light d-flex flex-wrap justify-content-center align-items-center gap-1"
+        >
+          <button (click)="getAll()" class="button p-1 filterBtn">All</button>
+          <button
+            #Deliverd
+            (click)="filterDate(Deliverd)"
+            class="button p-1 filterBtn"
+          >
+            Deliverd
+          </button>
+          <button
+            #Reached
+            (click)="filterDate(Reached)"
+            class="button p-1 filterBtn"
+          >
+            Can’t Be Reached
+          </button>
+          <button
+            #Postponed
+            (click)="filterDate(Postponed)"
+            class="button p-1 filterBtn"
+          >
+            Postponed
+          </button>
+          <button
+            #Partially
+            (click)="filterDate(Partially)"
+            class="button p-1 filterBtn"
+          >
+            Partially Delivered
+          </button>
+          <button
+            #Canseled
+            (click)="filterDate(Canseled)"
+            class="button p-1 filterBtn"
+          >
+            Client Canseled
+          </button>
+          <button
+            #RejectedWPay
+            (click)="filterDate(RejectedWPay)"
+            class="button p-1 filterBtn"
+          >
+            Rejected With Payment
+          </button>
+          <button
+            #RejectedWPerc
+            (click)="filterDate(RejectedWPerc)"
+            class="button p-1 filterBtn"
+          >
+            Rejected With Percentage
+          </button>
+          <button
+            #RejectedWithout
+            (click)="filterDate(RejectedWithout)"
+            class="button p-1 filterBtn"
+          >
+            Rejected Without Payment
+          </button>
+        </div>
+        <div class="px-2 py-3 table-responsive">
+          <div
+            class="search-table my-4 d-flex flex-wrap justify-content-center align-items-center gap-3"
+          >
+            <input
+              #search
+              (change)="searchInput(search)"
+              class="search-name rounded-3 p-2 bg-light"
+              type="number"
+              name="search"
+              placeholder="Enter Serial"
+            />
+            <button class="button ms-3 ms-md-0" (click)="getSearch()">
+              Search
+            </button>
+            <button class="button" (click)="resetSearch()">Reset</button>
+          </div>
+          <div class="d-flex align-items-start justify-content-start gap-2 mb-2">
+            <p>Show</p>
+            <select class="p-1 rounded-2" [(ngModel)]="itemsPerPage" >
+              <option selected value="5">5</option>
+              <option  value="10" >10</option>
+              <option value="15" >15</option>
+              <option value="20" >20</option>
+          </select>
+          </div>
+          <table
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            class="table table-hover table-bordered"
+          >
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Serial</th>
+                <th scope="col">Date</th>
+                <th scope="col">Client</th>
+                <th scope="col">Location</th>
+                <th scope="col">Total Weight</th>
+                <th scope="col">Total Cost</th>
+                <th scope="col">Status</th>
+                <th scope="col">Update Status</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let order of orders | paginate: { itemsPerPage: itemsPerPage , currentPage: p }">
+                <th scope="row">{{ order.id }}</th>
+                <td>{{ order.order_Date }}</td>
+                <td>
+                  {{ order.client_Name }} <br />
+                  {{ order.client_Phone }}
+                </td>
+                <td>
+                  {{ order.branch_Name }} <br />{{ order.governorate_Name }}
+                  <br />
+                  {{ order.city_Name }} <br />
+                  {{ order.client_Village }}
+                </td>
+                <td>{{ order.total_Weight }}</td>
+                <td>{{ order.total_Price }}</td>
+                <td>{{ order.status }}</td>
+                <td>
+                  <ng-container *ngIf="order.status != 'Client Canseled' && order.status != 'Deliverd'">
+                    <select
+                      class="p-2 rounded-3"
+                      #statusSelect
+                      name="status"
+                      (change)="updateStatus(order.id, statusSelect.value)"
+                    >
+                      <option value="" selected disabled>Change Status</option>
+                      <option value="Deliverd">Deliverd</option>
+                      <option value="Can’t Be Reached">Can’t Be Reached</option>
+                      <option value="Postponed">Postponed</option>
+                      <option value="Partially Delivered">
+                        Partially Delivered
+                      </option>
+                      <option value="Client Canseled">Client Canseled</option>
+                      <option value="Rejected With Payment">
+                        Rejected With Payment
+                      </option>
+                      <option value="Rejected With Percentage">
+                        Rejected With Percentage
+                      </option>
+                      <option value="Regected Without Payment">
+                        Regected Without Payment
+                      </option>
+                    </select>
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center align-items-center mt-3">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

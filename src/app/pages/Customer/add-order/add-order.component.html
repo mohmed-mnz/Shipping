@@ -1,0 +1,454 @@
+<ng-container
+  *ngIf="roleName == 'Customer' || (roleName == 'Employee' && id != 0)"
+>
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">
+      {{ id != 0 ? "Update" : "Add" }} Order
+    </h3>
+  </div>
+
+  <div class="section-padding order-form">
+    <div class="container">
+      <div class="head-title">
+        <p>Order Data</p>
+        <h3>Always Good To Make Our Business Bigger</h3>
+      </div>
+      <form
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        [formGroup]="orderForm"
+        (submit)="saveOrder($event)"
+      >
+        <div class="row my-5 align-items-start justify-content-center gy-5">
+          <div class="col-md-6">
+            <label for="client_Name" class="form-label">Client Name</label>
+            <input
+              name="client_Name"
+              formControlName="client_Name"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="name"
+              placeholder="Enter Client Name"
+            />
+            <ng-container
+              *ngIf="
+                orderForm.get('client_Name')?.invalid &&
+                orderForm.get('client_Name')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('client_Name')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Client Name is required
+              </div>
+              <div
+                *ngIf="orderForm.get('client_Name')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Name must be between 5 to 25 characters
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="client_Email" class="form-label">Client E-Mail</label>
+            <input
+              name="client_Email"
+              formControlName="client_Email"
+              type="email"
+              class="rounded-3 w-100 p-2"
+              id="client_Email"
+              placeholder="Enter Client Name"
+            />
+            <ng-container
+              *ngIf="
+                orderForm.get('client_Email')?.invalid &&
+                orderForm.get('client_Email')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('client_Email')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Client Email is required
+              </div>
+              <div
+                *ngIf="orderForm.get('client_Email')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Enter Vaild Email
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="client_Phone" class="form-label">Client Phone</label>
+            <input
+              formControlName="client_Phone"
+              type="tel"
+              class="rounded-3 w-100 p-2"
+              id="client_Phone"
+              name="client_Phone"
+            />
+            <ng-container
+              *ngIf="
+                orderForm.get('client_Phone')?.invalid &&
+                orderForm.get('client_Phone')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('client_Phone')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Client Phone Required.
+              </div>
+              <div
+                *ngIf="orderForm.get('client_Phone')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Enter Vaild Phone Number.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="branch_Id" class="form-label">Branch</label>
+            <select
+              #branch
+              (change)="getGovern(branch.value)"
+              formControlName="branch_Id"
+              name="branch_Id"
+              id="branch_Id"
+              class="rounded-3 w-100 p-2"
+            >
+              <option value="" diasbled selected>Select Branch</option>
+              <ng-container *ngFor="let branch of branches">
+                <option selected value="{{ branch.id }}">
+                  {{ branch.name }}
+                </option>
+              </ng-container>
+            </select>
+            <ng-container
+              *ngIf="
+                orderForm.get('branch_Id')?.invalid &&
+                orderForm.get('branch_Id')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('branch_Id')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Branch Required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="governorate_Id" class="form-label">Governorate</label>
+            <select
+              #govern
+              (change)="getCity(govern.value)"
+              formControlName="governorate_Id"
+              name="governorate_Id"
+              id="governorate_Id"
+              class="w-100 rounded-3 p-2"
+            >
+              <option value="" disabled selected>Select Governorate</option>
+              <ng-container *ngFor="let govern of governs">
+                <option selected value="{{ govern.id }}">
+                  {{ govern.name }}
+                </option>
+              </ng-container>
+            </select>
+            <ng-container
+              *ngIf="
+                orderForm.get('governorate_Id')?.invalid &&
+                orderForm.get('governorate_Id')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('governorate_Id')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Governorate Required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="city_Id" class="form-label">City</label>
+            <select
+              #city
+              (change)="getCityId(city.value)"
+              formControlName="city_Id"
+              name="city_Id"
+              id="city_Id"
+              class="rounded-3 p-2 w-100"
+            >
+              <option value="" disabled selected>Select City</option>
+              <ng-container *ngFor="let city of cities">
+                <option selected value="{{ city.id }}">{{ city.name }}</option>
+              </ng-container>
+            </select>
+            <ng-container
+              *ngIf="
+                orderForm.get('city_Id')?.invalid &&
+                orderForm.get('city_Id')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('city_Id')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                City Required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="client_Village" class="form-label"
+              >Client Village</label
+            >
+            <input
+              #village
+              (change)="getVillageData(village.value)"
+              formControlName="client_Village"
+              type="text"
+              placeholder="Village Name (Optional)"
+              class="rounded-3 p-2 w-100"
+              id="client_Village"
+              name="client_Village"
+            />
+            <ng-container
+              *ngIf="
+                orderForm.get('client_Village')?.invalid &&
+                orderForm.get('client_Village')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('client_Village')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Village Name Must Be Between 3 to 25 charchters.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="order_Type" class="form-label">Order Type</label>
+            <select
+              formControlName="order_Type"
+              name="order_Type"
+              id="order_Type"
+              class="w-100 p-2 rounded-3"
+            >
+              <option value="" disabled selected>Select Order Type</option>
+              <option value="online">Online</option>
+              <option value="On_Branch">On Branch</option>
+            </select>
+            <ng-container
+              *ngIf="
+                orderForm.get('order_Type')?.invalid &&
+                orderForm.get('order_Type')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('order_Type')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Order Type Required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="charge_Type" class="form-label">Charge Type</label>
+            <select
+              #charge
+              (change)="getChargePrice(charge.value)"
+              formControlName="charge_Type"
+              name="charge_Type"
+              id="charge_Type"
+              class="rounded-3 p-2 w-100"
+            >
+              <option value="" disabled selected>Select Charge Type</option>
+              <option value="charge_Regular">Regular Charge</option>
+              <option value="Charge_24Hour">24hours Charge</option>
+              <option value="charge_15Days">15Days Charge</option>
+              <option value="charge_89Days">89Days Charge</option>
+            </select>
+            <ng-container
+              *ngIf="
+                orderForm.get('charge_Type')?.invalid &&
+                orderForm.get('charge_Type')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('charge_Type')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Charge Type Required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="payment_Type" class="form-label">Payment Type</label>
+            <select
+              formControlName="payment_Type"
+              name="payment_Type"
+              id="payment_Type"
+              class="w-100 p-2 rounded-3"
+            >
+              <option value="" disabled selected>Select Payment Type</option>
+              <option value="on_delivery">On Delivery</option>
+              <option value="advanced_payment">Advanced Payment</option>
+              <option value="exchange">Exchange</option>
+            </select>
+            <ng-container
+              *ngIf="
+                orderForm.get('payment_Type')?.invalid &&
+                orderForm.get('payment_Type')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('payment_Type')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Payment Type Required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-12">
+            <div class="rounded-3 p-2 proucts-box">
+              <div class="row gy-4">
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <input
+                    #name
+                    (change)="getName(name)"
+                    type="text"
+                    class="w-100 p-2 rounded-3"
+                    placeholder="Product Name"
+                  />
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <input
+                    #quantity
+                    (change)="getQuantity(quantity)"
+                    type="number"
+                    min="0"
+                    placeholder="Product Quantity"
+                    class="w-100 p-2 rounded-3"
+                  />
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <input
+                    #weight
+                    (change)="getWeight(weight)"
+                    type="number"
+                    min="0"
+                    placeholder="Product Weight"
+                    class="w-100 p-2 rounded-3"
+                  />
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                  <button class="button" (click)="addProduct($event)">
+                    Add Product
+                  </button>
+                </div>
+              </div>
+              <hr />
+              <ng-container *ngFor="let product of myProducts; let i = index">
+                <div class="row mt-1 gy-4">
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <p class="p-2 rounded-3 bg-white">{{ product.name }}</p>
+                  </div>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <p class="p-2 rounded-3 bg-white">{{ product.quantity }}</p>
+                  </div>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <p class="p-2 rounded-3 bg-white">{{ product.weight }}</p>
+                  </div>
+                  <div class="col-sm-6 col-md-4 col-lg-3">
+                    <button class="button" (click)="removeProduct(i)">
+                      Remove Product
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <p class="text-danger" *ngIf="productsError == true">Products Can’t be Empty</p>
+          </div>
+          <div class="col-md-6">
+            <label for="total_Weight" class="form-label">Total Weight</label>
+            <input
+              formControlName="total_Weight"
+              value="{{ totalProdsWeight }}"
+              type="number"
+              name="total_Weight"
+              id="total_Weight"
+              readonly
+              min="0"
+              class="w-100 rounded-3 p-2"
+            />
+            <ng-container
+              *ngIf="
+                orderForm.get('total_Weight')?.invalid &&
+                orderForm.get('total_Weight')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('total_Weight')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Total Weight Required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="total_Price" class="form-label">Total Price</label>
+            <input
+              formControlName="total_Price"
+              value="{{ totalPrice }}"
+              class="w-100 rounded-3 p-2"
+              type="number"
+              name="total_Price"
+              id="total_Price"
+              readonly
+              min="0"
+            />
+            <ng-container
+              *ngIf="
+                orderForm.get('total_Price')?.invalid &&
+                orderForm.get('total_Price')?.touched
+              "
+            >
+              <div
+                *ngIf="orderForm.get('total_Price')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Total Price Required.
+              </div>
+            </ng-container>
+          </div>
+          <input
+            formControlName="status"
+            type="text"
+            hidden
+            value="new"
+            name="status"
+            id="status"
+          />
+          <input
+            formControlName="order_Date"
+            hidden
+            type="datetime"
+            name="order_Date"
+            id="order_Date"
+          />
+        </div>
+        <button type="submit" class="button">
+          {{ id != 0 ? "Update" : "Add" }} Order
+        </button>
+      </form>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="roleName != 'Customer' && roleName != 'Employee'">
+  <app-not-found></app-not-found>
+</ng-container>

@@ -1,0 +1,46 @@
+.intro {
+  background-color: var(--section-background);
+}
+.intro-box {
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.intro-box:hover {
+  box-shadow: 0px 0px 5px 1px var(--main-yellow);
+}
+.intro-box h4 {
+  color: var(--main-black);
+}
+.intro-box a {
+  display: block;
+  color: var(--main-black);
+  position: relative;
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.intro-box a::after {
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 2px;
+  left: 0;
+  bottom: -5px;
+  background-color: var(--main-red);
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.intro-box:hover a {
+  color: var(--main-red);
+}
+.intro-box:hover a::after {
+  width: 100%;
+}

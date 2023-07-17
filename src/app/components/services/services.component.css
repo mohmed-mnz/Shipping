@@ -1,0 +1,52 @@
+.services {
+  background-color: var(--section-background);
+}
+.services .service-box img {
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.services .service-box:hover img {
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
+.services .service-box .service-title h5 {
+  color: var(--main-black);
+  font-size: 22px;
+  font-weight: bold;
+}
+.services .service-box .service-title p {
+  background-color: var(--main-red);
+  padding: 7px 10px;
+  color: white;
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.services .service-box:hover .service-title p {
+  color: var(--main-yellow);
+}
+.services .service-box:hover .custom-button {
+  transition-delay: 0.15s;
+  background-color: var(--main-red);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.services .service-box:hover .custom-button span:first-child {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+.services .service-box:hover .custom-button span:last-child {
+  left: 0;
+  z-index: 1;
+}

@@ -1,0 +1,16 @@
+.features-content h6 {
+  color: var(--main-red);
+  font-weight: bolder;
+}
+.features-content h2 {
+  color: var(--main-black);
+  font-weight: bold;
+}
+.features-content .feat-box {
+  background-color: var(--main-red);
+}
+.features-content .feat-box i {
+  color: var(--main-yellow);
+  font-size: 24px;
+  font-weight: bolder;
+}

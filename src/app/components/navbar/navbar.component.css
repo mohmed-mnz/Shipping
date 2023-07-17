@@ -1,0 +1,17 @@
+.navbar {
+  box-shadow: 0px 0px 5px 2px #ccc;
+}
+.navbar a.navbar-brand {
+  color: var(--main-black);
+}
+.navbar a.navbar-brand span {
+  color: var(--main-red);
+}
+.navbar .nav-item .nav-link {
+  color: var(--main-black);
+  font-weight: bold;
+}
+.navbar .nav-item .nav-link.active,
+.navbar .nav-item .nav-link:hover {
+  color: var(--main-red);
+}

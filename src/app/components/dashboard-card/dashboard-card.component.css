@@ -1,0 +1,211 @@
+.dashcard {
+  cursor: pointer;
+}
+.dashcard p {
+  font-size: 18px;
+  font-weight: bolder;
+  line-height: 20px;
+  color: var(--main-black);
+}
+
+.dashcard p.small {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--main-black);
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.dashcard p.small span {
+  color: var(--main-red);
+}
+.go-corner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  background-color: var(--main-red);
+  border-radius: 0 4px 0 32px;
+}
+
+.go-arrow {
+  margin-top: -4px;
+  margin-right: -4px;
+  color: var(--main-yellow);
+  font-family: courier, sans;
+}
+
+.dashcard1 {
+  display: block;
+  position: relative;
+  max-width: 262px;
+  background-color: #f2f8f9;
+  border-radius: 4px;
+  padding: 32px 24px;
+  margin: 12px;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.dashcard1:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -16px;
+  right: -16px;
+  background: var(--main-red);
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  transform: scale(1);
+  transform-origin: 50% 50%;
+  transition: transform 0.25s ease-out;
+}
+
+.dashcard1:hover:before {
+  transform: scale(21);
+}
+
+.dashcard1:hover p {
+  transition: all 0.3s ease-out;
+  color: rgba(255, 255, 255, 0.8);
+}
+.dashcard1:hover p.small span {
+  color: var(--main-yellow);
+}
+.dashcard1:hover h3 {
+  transition: all 0.3s ease-out;
+  color: #fff;
+}
+
+.dashcard2 {
+  display: block;
+  top: 0px;
+  position: relative;
+  max-width: 262px;
+  background-color: #f2f8f9;
+  border-radius: 4px;
+  padding: 32px 24px;
+  margin: 12px;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid #f2f8f9;
+}
+
+.dashcard2:hover {
+  transition: all 0.2s ease-out;
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  top: -4px;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.dashcard2:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -16px;
+  right: -16px;
+  background: #00838d;
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  transform: scale(2);
+  transform-origin: 50% 50%;
+  transition: transform 0.15s ease-out;
+}
+
+.dashcard2:hover:before {
+  transform: scale(2.15);
+}
+
+.dashcard3 {
+  display: block;
+  top: 0px;
+  position: relative;
+  max-width: 262px;
+  background-color: #f2f8f9;
+  border-radius: 4px;
+  padding: 32px 24px;
+  margin: 12px;
+  text-decoration: none;
+  overflow: hidden;
+  border: 1px solid #f2f8f9;
+}
+
+.dashcard3 .go-corner {
+  opacity: 0.7;
+}
+
+.dashcard3:hover {
+  border: 1px solid #00838d;
+  box-shadow: 0px 0px 999px 999px rgba(255, 255, 255, 0.5);
+  z-index: 500;
+}
+
+.dashcard3:hover p {
+  color: #00838d;
+}
+
+.dashcard3:hover .go-corner {
+  transition: opactiy 0.3s linear;
+  opacity: 1;
+}
+
+.dashcard4 {
+  display: block;
+  top: 0px;
+  position: relative;
+  max-width: 262px;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 32px 24px;
+  margin: 12px;
+  text-decoration: none;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+
+.dashcard4 .go-corner {
+  background-color: #00838d;
+  height: 100%;
+  width: 16px;
+  padding-right: 9px;
+  border-radius: 0;
+  transform: skew(6deg);
+  margin-right: -36px;
+  align-items: start;
+  background-image: linear-gradient(-45deg, #8f479a 1%, #dc2a74 100%);
+}
+
+.dashcard4 .go-arrow {
+  transform: skew(-6deg);
+  margin-left: -2px;
+  margin-top: 9px;
+  opacity: 0;
+}
+
+.dashcard4:hover {
+  border: 1px solid #cd3d73;
+}
+
+.dashcard4 h3 {
+  margin-top: 8px;
+}
+
+.dashcard4:hover .go-corner {
+  margin-right: -12px;
+}
+
+.dashcard4:hover .go-arrow {
+  opacity: 1;
+}

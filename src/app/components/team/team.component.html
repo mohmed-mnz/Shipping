@@ -1,0 +1,47 @@
+<div class="team-members section-padding">
+  <div class="container">
+    <div class="head-title">
+      <p>Who Works Here</p>
+      <h3>Our expert Team Member</h3>
+    </div>
+    <div class="row mt-4 align-items-center justify-content-center gy-4">
+      <ng-container *ngFor="let item of teamList">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          class="col-sm-6 col-lg-3"
+        >
+          <div
+            class="team-box rounded-4 overflow-hidden bg-white d-flex flex-column gap-2 text-center"
+          >
+            <div class="team-img position-relative overflow-hidden">
+              <img
+                src="{{ item.img }}"
+                class="img-fluid w-100 d-block"
+                alt="team"
+              />
+              <ul
+                class="d-flex justify-content-center align-items-center gap-2"
+              >
+                <ng-container *ngFor="let social of socialList">
+                  <li>
+                    <a
+                      class="fs-5 button"
+                      target="_blank"
+                      href="{{ social.link }}"
+                      ><i class="{{ social.icon }}"></i
+                    ></a>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+            <div class="team-info p-3">
+              <h5>{{ item.name }}</h5>
+              <small>{{ item.position }}</small>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

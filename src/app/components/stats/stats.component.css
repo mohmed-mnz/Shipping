@@ -1,0 +1,30 @@
+.stats {
+  background-image: url("../../../assets/stats-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+.stats::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.stats .container {
+  position: relative;
+  z-index: 2;
+}
+.stats .stats-box i {
+  color: var(--main-yellow);
+  font-size: 34px;
+}
+.stats .stats-box h4 {
+  color: var(--main-red);
+}
+.stats .stats-box p {
+  color: white;
+}

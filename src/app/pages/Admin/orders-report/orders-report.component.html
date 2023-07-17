@@ -1,0 +1,129 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">Orders Report</h3>
+  </div>
+
+  <div class="section-padding show-orders">
+    <div class="container">
+      <div class="head-title">
+        <p>Report</p>
+        <h3>Our Orders Statics</h3>
+      </div>
+      <div class="orders-table overflow-hidden rounded-3 mt-5 bg-white">
+        <div
+          class="order-header p-2 bg-light d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center gap-3"
+        >
+          <h3>Orders Report</h3>
+          <button class="button" (click)="downloadPDF()">
+            Print Report<i class="fa-solid fa-print ms-3"></i>
+          </button>
+        </div>
+        <div class="px-2 py-3 table-responsive">
+          <div
+            class="search-table my-4 d-flex flex-wrap justify-content-center align-items-center gap-3"
+          >
+            <select #status (change)="getStatus(status)" class="rounded-3 p-2">
+              <option value="" selected disabled>Select Status</option>
+              <option value="New">New</option>
+              <option value="Waiting">Waiting</option>
+              <option value="Assigned To Delivery">Assigned To Delivery</option>
+              <option value="Deliverd">Deliverd</option>
+              <option value="Can’t Be Reached">Can’t Be Reached</option>
+              <option value="Postponed">Postponed</option>
+              <option value="Partially Delivered">Partially Delivered</option>
+              <option value="Client Canseled">Client Canseled</option>
+              <option value="Rejected With Payment">
+                Rejected With Payment
+              </option>
+              <option value="Rejected With Percentage">
+                Rejected With Percentage
+              </option>
+              <option value="Regected Without Payment">
+                Regected Without Payment
+              </option>
+            </select>
+            <input
+              #startDate
+              type="datetime-local"
+              class="rounded-3 p-2"
+              placeholder="Start Date"
+              (change)="getStartDate(startDate)"
+            />
+            <input
+              #endDate
+              type="datetime-local"
+              class="rounded-3 p-2"
+              placeholder="End Date"
+              (change)="getEndDate(endDate)"
+            />
+            <button class="button ms-3 ms-md-0" (click)="getReport()">
+              Show
+            </button>
+            <button class="button" (click)="resetSearch()">Reset</button>
+          </div>
+          <div class="d-flex align-items-start justify-content-start gap-2 mb-2">
+            <p>Show</p>
+            <select class="p-1 rounded-2" [(ngModel)]="itemsPerPage" >
+              <option selected value="5">5</option>
+              <option  value="10" >10</option>
+              <option value="15" >15</option>
+              <option value="20" >20</option>
+          </select>
+          </div>
+          <table
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            class="table table-hover table-bordered"
+          >
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Serial</th>
+                <th scope="col">Date</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Client</th>
+                <th scope="col">Location</th>
+                <th scope="col">Total Weight</th>
+                <th scope="col">Total Cost</th>
+                <th scope="col">Status</th>
+                <th scope="col">Delivery</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let order of orders | paginate: { itemsPerPage: itemsPerPage , currentPage: p }">
+                <th scope="row">{{ order.id }}</th>
+                <td>{{ order.order_Date }}</td>
+                <td>
+                  {{ order.customer_Name }} <br />
+                  {{ order.customer_Phone }}
+                </td>
+                <td>
+                  {{ order.client_Name }} <br />
+                  {{ order.client_Phone }}
+                </td>
+                <td>
+                  {{ order.branch_Name }} <br />{{ order.governorate_Name }}
+                  <br />
+                  {{ order.city_Name }} <br />
+                  {{ order.client_Village }}
+                </td>
+                <td>{{ order.total_Weight }}</td>
+                <td>{{ order.total_Price }}</td>
+                <td>{{ order.status }}</td>
+                <td>
+                  <ng-container *ngIf="order.delivery_Name != null">
+                    {{ order.delivery_Name }} <br />
+                    {{ order.delivery_Phone }}
+                  </ng-container>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center align-items-center mt-3">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

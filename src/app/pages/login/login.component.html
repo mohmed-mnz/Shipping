@@ -1,0 +1,68 @@
+<div
+  class="page-header section-padding d-flex justify-content-center align-items-center"
+>
+  <h3 class="display-3 text-white fw-bolder">Login</h3>
+</div>
+
+<div class="section-padding login">
+  <div class="container">
+    <div class="head-title">
+      <p>Welcome Back</p>
+      <h3>Fill Your Info To Login</h3>
+    </div>
+    <div class="row align-items-center justify-content-center gy-4 mt-5">
+      <div data-aos="fade-down" data-aos-duration="1000" class="col-md-6">
+        <div class="login-img rounded-3 overflow-hidden">
+          <img
+            src="assets/login.png"
+            class="img-fluid w-100 d-block"
+            alt="login"
+          />
+        </div>
+      </div>
+      <div data-aos="fade-up" data-aos-duration="1000" class="col-md-6">
+        <form
+          class="form-content p-5"
+          [formGroup]="registerForm"
+          (submit)="Login($event)"
+        >
+          <div class="form-item mb-3">
+            <label class="form-label" for="email">E-Mail</label>
+            <input
+              type="email"
+              class="w-100 p-2 rounded-3"
+              formControlName="email"
+            />
+            <ng-container *ngIf="getEmail.touched">
+              <div
+                *ngIf="getEmail.hasError('required')"
+                class="form-text text-danger"
+              >
+                Email is required
+              </div>
+            </ng-container>
+          </div>
+          <div class="form-item mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input
+              type="password"
+              class="w-100 p-2 rounded-3"
+              formControlName="password"
+            />
+            <ng-container *ngIf="getPassword.touched">
+              <div
+                *ngIf="getPassword.hasError('required')"
+                class="form-text text-danger"
+              >
+                Password is required
+              </div>
+            </ng-container>
+          </div>
+          <p class="text-danger my-3" *ngIf="message != null">{{message}}</p>
+          <button class="button">LogIn</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,125 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">Weight</h3>
+  </div>
+
+  <div class="section-padding weight-form">
+    <div class="container">
+      <div class="head-title">
+        <p>Weight Setting</p>
+        <h3>How The Order Price Caluclated</h3>
+      </div>
+      <form
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        [formGroup]="weightForm"
+        (submit)="saveWeight($event)"
+      >
+        <div class="row my-5 align-items-start justify-content-center gy-5">
+          <div class="col-md-6">
+            <label for="standard_Weight" class="form-label"
+              >Standard Weight</label
+            >
+            <input
+              formControlName="standard_Weight"
+              type="number"
+              min="1"
+              name="standard_Weight"
+              id="standard_Weight"
+              class="w-100 rounded-3 p-2"
+              placeholder="Standard Weight In Kg"
+            />
+            <ng-container
+              *ngIf="
+                weightForm.get('standard_Weight')?.invalid &&
+                weightForm.get('standard_Weight')?.touched
+              "
+            >
+              <div
+                *ngIf="weightForm.get('standard_Weight')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Standard Weight Required
+              </div>
+              <div
+                *ngIf="weightForm.get('standard_Weight')?.errors?.['min']"
+                class="form-text text-danger"
+              >
+                Standard weight must be more than or equal 1
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="extra_Weight_Price" class="form-label"
+              >Extra Weight Price</label
+            >
+            <input
+              formControlName="extra_Weight_Price"
+              type="number"
+              min="1"
+              name="extra_Weight_Price"
+              id="extra_Weight_Price"
+              class="w-100 rounded-3 p-2"
+              placeholder="extra weight price in pound"
+            />
+            <ng-container
+              *ngIf="
+                weightForm.get('extra_Weight_Price')?.invalid &&
+                weightForm.get('extra_Weight_Price')?.touched
+              "
+            >
+              <div
+                *ngIf="weightForm.get('extra_Weight_Price')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Extra Weight Price Required
+              </div>
+              <div
+                *ngIf="weightForm.get('extra_Weight_Price')?.errors?.['min']"
+                class="form-text text-danger"
+              >
+                Extra Weight Price must be more than or equal 1
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="village_price" class="form-label"
+              >Delivery To Village Price</label
+            >
+            <input
+              formControlName="village_price"
+              type="number"
+              min="1"
+              name="village_price"
+              id="village_price"
+              class="w-100 rounded-3 p-2"
+              placeholder="village price in pound"
+            />
+            <ng-container
+              *ngIf="
+                weightForm.get('village_price')?.invalid &&
+                weightForm.get('village_price')?.touched
+              "
+            >
+              <div
+                *ngIf="weightForm.get('village_price')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Village Price Required
+              </div>
+              <div
+                *ngIf="weightForm.get('village_price')?.errors?.['min']"
+                class="form-text text-danger"
+              >
+                Village Price must be more than or equal 1
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <button type="submit" class="button">Save Setting</button>
+      </form>
+    </div>
+  </div>
+

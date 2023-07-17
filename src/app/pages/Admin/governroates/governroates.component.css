@@ -1,0 +1,47 @@
+.page-header {
+  background-image: url("../../../../assets/locations.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+.page-header::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.page-header h3 {
+  z-index: 1;
+}
+
+.show-governroates {
+  background-image: url("../../../../assets/pattern1.png");
+}
+.governroates-table {
+  box-shadow: 0px 0px 4px 1px #ccc;
+  border: 1px solid rgb(133, 130, 130);
+}
+.governroate-header {
+  border-bottom: 1px solid black;
+  box-shadow: 0px 0px 5px 1px #ccc;
+}
+.governroate-header h3 {
+  color: var(--main-black);
+}
+
+.edit-btn {
+  color: var(--main-yellow);
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+  font-size: 16px;
+}
+.edit-btn:hover {
+  color: var(--main-red);
+}

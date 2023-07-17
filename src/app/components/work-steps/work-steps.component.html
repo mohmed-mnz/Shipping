@@ -1,0 +1,36 @@
+<div class="work-steps section-padding">
+  <div class="container">
+    <div class="head-title">
+      <p>How We Work</p>
+      <h3 class="text-white">Working Process for services</h3>
+    </div>
+    <div class="row mt-3 align-items-center justify-content-center gy-4">
+      <ng-container *ngFor="let item of workStepsList">
+        <div
+          data-aos="flip-down"
+          data-aos-duration="1000"
+          class="col-md-6 col-lg-3"
+        >
+          <div
+            class="step-box d-flex flex-column gap-3 align-items-center justify-content-center text-center"
+          >
+            <div
+              class="step-icon p-3 rounded-circle position-relative bg-white"
+            >
+              <img
+                src="{{ item.icon }}"
+                class="img-fluid w-100 d-block p-4 rounded-circle"
+                alt="work step"
+              />
+              <p class="step-number rounded-circle text-center fw-bold">
+                0{{ item.id }}
+              </p>
+            </div>
+            <h4 class="text-white fw-bold">{{ item.title }}</h4>
+            <p class="text-white-50">{{ item.desc }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

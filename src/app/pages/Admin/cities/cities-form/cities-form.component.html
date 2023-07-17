@@ -1,0 +1,215 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">
+      {{ id != 0 ? "Update" : "Add" }} City
+    </h3>
+  </div>
+
+  <div class="section-padding city-form">
+    <div class="container">
+      <div class="head-title">
+        <p>City Data</p>
+        <h3>Always Good To Make Our Business Bigger</h3>
+      </div>
+      <form
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        [formGroup]="cityForm"
+        (ngSubmit)="submitForm($event)"
+      >
+        <div class="row my-5 align-items-start justify-content-center gy-5">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input
+              name="name"
+              formControlName="name"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="name"
+              placeholder="Enter City Name"
+            />
+            <ng-container
+              *ngIf="
+                cityForm.get('name')?.invalid && cityForm.get('name')?.touched
+              "
+            >
+              <div
+                *ngIf="cityForm.get('name')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                City Name is required
+              </div>
+              <div
+                *ngIf="cityForm.get('name')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Enter Vaild City Name
+              </div>
+            </ng-container>
+            <div *ngIf="NameFlag == true" class="form-text text-danger">
+              City Already Exist
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="governorate_Id" class="form-label">Governroate</label>
+            <select
+              id="governorate_Id"
+              formControlName="governorate_Id"
+              name="governorate_Id"
+              class="w-100 rounded-3 p-2"
+            >
+              <option value="" disabled selected>Select Governroate</option>
+              <ng-container *ngFor="let govern of GovernoratesList">
+                <option selected value="{{ govern.id }}">
+                  {{ govern.name }}
+                </option>
+              </ng-container>
+            </select>
+            <ng-container
+              *ngIf="
+                cityForm.get('governorate_Id')?.invalid &&
+                cityForm.get('governorate_Id')?.touched
+              "
+            >
+              <div
+                *ngIf="cityForm.get('governorate_Id')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Governroate Required
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="charge_Regular" class="form-label"
+              >Regular Charge:</label
+            >
+            <input
+              type="number"
+              min="1"
+              id="charge_Regular"
+              formControlName="charge_Regular"
+              class="w-100 p-2 rounded-3"
+            />
+            <div
+              *ngIf="
+                cityForm.get('charge_Regular')?.invalid &&
+                cityForm.get('charge_Regular')?.touched
+              "
+            >
+              <div
+                *ngIf="cityForm.get('charge_Regular')?.errors?.['required']"
+                class="text-danger"
+              >
+                Regular Charge is required
+              </div>
+              <div
+                *ngIf="cityForm.get('charge_Regular')?.errors?.['min']"
+                class="text-danger"
+              >
+                Regular Charge must be a positive value
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="charge_24Hour" class="form-label"
+              >24-Hour Charge:</label
+            >
+            <input
+              type="number"
+              min="1"
+              id="charge_24Hour"
+              formControlName="charge_24Hour"
+              class="w-100 p-2 rounded-3"
+            />
+            <div
+              *ngIf="
+                cityForm.get('charge_24Hour')?.invalid &&
+                cityForm.get('charge_24Hour')?.touched
+              "
+            >
+              <div
+                *ngIf="cityForm.get('charge_24Hour')?.errors?.['required']"
+                class="text-danger"
+              >
+                24-Hour Charge is required
+              </div>
+              <div
+                *ngIf="cityForm.get('charge_24Hour')?.errors?.['min']"
+                class="text-danger"
+              >
+                24-Hour Charge must be a positive value
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="charge_15Days" class="form-label"
+              >15-Days Charge:</label
+            >
+            <input
+              type="number"
+              min="1"
+              id="charge_15Days"
+              formControlName="charge_15Days"
+              class="w-100 rounded-3 p-2"
+            />
+            <div
+              *ngIf="
+                cityForm.get('charge_15Days')?.invalid &&
+                cityForm.get('charge_15Days')?.touched
+              "
+            >
+              <div
+                *ngIf="cityForm.get('charge_15Days')?.errors?.['required']"
+                class="text-danger"
+              >
+                15-Days Charge is required
+              </div>
+              <div
+                *ngIf="cityForm.get('charge_15Days')?.errors?.['min']"
+                class="text-danger"
+              >
+                15-Days Charge must be a positive value
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="charge_89Days" class="form-label"
+              >89-Days Charge:</label
+            >
+            <input
+              type="number"
+              min="1"
+              id="charge_89Days"
+              formControlName="charge_89Days"
+              class="w-100 rounded-3 p-2"
+            />
+            <div
+              *ngIf="
+                cityForm.get('charge_89Days')?.invalid &&
+                cityForm.get('charge_89Days')?.touched
+              "
+            >
+              <div
+                *ngIf="cityForm.get('charge_89Days')?.errors?.['required']"
+                class="text-danger"
+              >
+                89-Days Charge is required
+              </div>
+              <div
+                *ngIf="cityForm.get('charge_89Days')?.errors?.['min']"
+                class="text-danger"
+              >
+                89-Days Charge must be a positive value
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="button">
+          {{ id != 0 ? "Update" : "Add" }} City
+        </button>
+      </form>
+    </div>
+  </div>
+

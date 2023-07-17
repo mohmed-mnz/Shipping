@@ -1,0 +1,62 @@
+.work-steps {
+  background-image: url("../../../assets/work-bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+.work-steps::after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.work-steps .container {
+  position: relative;
+  z-index: 1;
+}
+.work-steps .step-box {
+  transition: var(--main-trasnsition);
+  -webkit-transition: var(--main-trasnsition);
+  -moz-transition: var(--main-trasnsition);
+  -ms-transition: var(--main-trasnsition);
+  -o-transition: var(--main-trasnsition);
+}
+.work-steps .step-box .step-icon img {
+  background-color: white;
+  border: 1px dashed var(--main-red);
+  transition: var(--main-trasnsition);
+  -webkit-transition: var(--main-trasnsition);
+  -moz-transition: var(--main-trasnsition);
+  -ms-transition: var(--main-trasnsition);
+  -o-transition: var(--main-trasnsition);
+}
+.work-steps .step-box:hover .step-icon img {
+  background-color: var(--main-red);
+  transform: rotateX("-90deg");
+  -webkit-transform: rotateX("-90deg");
+  -moz-transform: rotateX("-90deg");
+  -ms-transform: rotateX("-90deg");
+  -o-transform: rotateX("-90deg");
+}
+.work-steps .step-box .step-number {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  z-index: 2;
+  background-color: var(--main-red);
+  color: var(--main-yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

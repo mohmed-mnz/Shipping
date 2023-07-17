@@ -1,0 +1,90 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">Dashboard</h3>
+  </div>
+
+  <div class="section-padding dashboard">
+    <div class="container">
+      <div class="head-title">
+        <p>Your Orders State</p>
+        <h3>It's Honor To Be Our Customer</h3>
+      </div>
+      <div class="row mt-5 align-items-center justify-content-center gy-4">
+        <div (click)="goAll()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'All'"
+            [statusList]="allOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goNew()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'New'"
+            [statusList]="newOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goWaiting()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Waiting'"
+            [statusList]="waitingOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goAssigned()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Assigned To Delivery'"
+            [statusList]="assignedOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goDelivered()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Deliverd'"
+            [statusList]="deliveredOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goCantReach()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Can’t Be Reached'"
+            [statusList]="cantReachOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goPostponed()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Postponed'"
+            [statusList]="postponedOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goPartialyDelv()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Partially Delivered'"
+            [statusList]="partialyDelvOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goCanceled()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Client Canseled'"
+            [statusList]="canceledOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goRejWithPay()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Rejected With Payment'"
+            [statusList]="rejectedWithPayOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goRejWithPercPay()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Rejected With Percentage'"
+            [statusList]="rejectedWithPercPayOrders"
+          ></app-dashboard-card>
+        </div>
+        <div (click)="goRejWithoutPay()" class="col-sm-6 col-md-4 col-lg-3">
+          <app-dashboard-card
+            [status]="'Regected Without Payment'"
+            [statusList]="rejectedWithouPayOrders"
+          ></app-dashboard-card>
+        </div>
+      </div>
+    </div>
+  </div>
+

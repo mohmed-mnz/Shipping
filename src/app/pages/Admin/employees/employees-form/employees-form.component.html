@@ -1,0 +1,242 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">
+      {{ id != 0 ? "Update" : "Add" }} Employee
+    </h3>
+  </div>
+
+  <div class="section-padding employee-form">
+    <div class="container">
+      <div class="head-title">
+        <p>Employee Data</p>
+        <h3>Always Good To Make Our Business Bigger</h3>
+      </div>
+      <form
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        [formGroup]="employeeForm"
+        (submit)="submit($event)"
+      >
+        <div class="row my-5 align-items-start justify-content-center gy-5">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input
+              name="name"
+              formControlName="name"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="name"
+              placeholder="Enter Employee Name"
+            />
+            <ng-container
+              *ngIf="
+                employeeForm.get('name')?.invalid &&
+                employeeForm.get('name')?.touched
+              "
+            >
+              <div
+                *ngIf="employeeForm.get('name')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Employee Name is required
+              </div>
+              <div
+                *ngIf="employeeForm.get('name')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Name Must Be Between 5 to 25 Characters
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label">E-Mail</label>
+            <input
+              name="email"
+              formControlName="email"
+              type="email"
+              class="rounded-3 w-100 p-2"
+              id="email"
+              placeholder="Enter Employee E-Mail"
+            />
+            <ng-container *ngIf="getEmployeeEmail.touched">
+              <div
+                *ngIf="getEmployeeEmail.hasError('required')"
+                class="form-text text-danger"
+              >
+                Employee Email is required
+              </div>
+              <div
+                *ngIf="getEmployeeEmail.hasError('pattern')"
+                class="form-text text-danger"
+              >
+                Enter Valid Email
+              </div>
+              <div *ngIf="EmailFlag == true" class="form-text text-danger">
+                Email Is Already Exist
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="phone" class="form-label">Phone</label>
+            <input
+              name="phone"
+              formControlName="phone"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="phone"
+              placeholder="Enter Employee Phone"
+            />
+            <ng-container *ngIf="getEmployeePhone.touched">
+              <div
+                *ngIf="getEmployeePhone.hasError('required')"
+                class="form-text text-danger"
+              >
+                Phone is required
+              </div>
+              <div
+                *ngIf="getEmployeePhone.hasError('pattern')"
+                class="form-text text-danger"
+              >
+                Enter Valid Phone Number
+              </div>
+              <div *ngIf="PhoneFlag == true" class="form-text text-danger">
+                Phone Is Already Exist
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="age" class="form-label">Age</label>
+            <input
+              name="age"
+              formControlName="age"
+              type="number"
+              min="20"
+              max="60"
+              class="rounded-3 w-100 p-2"
+              id="age"
+              placeholder="Enter Employee Age"
+            />
+            <ng-container *ngIf="getEmployeeAge.touched">
+              <div
+                *ngIf="getEmployeeAge.hasError('required')"
+                class="form-text text-danger"
+              >
+                Employee Age is required
+              </div>
+              <div
+                *ngIf="getEmployeeAge.hasError('min')"
+                class="form-text text-danger"
+              >
+                Employee Must be 20 years or Older
+              </div>
+              <div
+                *ngIf="getEmployeeAge.hasError('max')"
+                class="form-text text-danger"
+              >
+                Employee must be younger than 60 years old
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input
+              name="password"
+              formControlName="password"
+              type="password"
+              class="rounded-3 w-100 p-2"
+              id="password"
+              placeholder="Enter Employee Password"
+            />
+            <ng-container *ngIf="getEmployeePassword.touched">
+              <div
+                *ngIf="getEmployeePassword.hasError('required')"
+                class="form-text text-danger"
+              >
+                Password is required
+              </div>
+              <div
+                *ngIf="getEmployeePassword.hasError('minlength')"
+                class="form-text text-danger"
+              >
+                Password Should be more than 8 Characters or Numbers
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="address" class="form-label">Address</label>
+            <input
+              name="address"
+              formControlName="address"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="address"
+              placeholder="Enter Address"
+            />
+            <ng-container *ngIf="getEmployeeAddress.touched">
+              <div
+                *ngIf="getEmployeeAddress.hasError('required')"
+                class="form-text text-danger"
+              >
+                Address is required
+              </div>
+
+              <div
+                *ngIf="getEmployeeAddress.hasError('minlength')"
+                class="form-text text-danger"
+              >
+                Address Should be more than 5 characters
+              </div>
+
+              <div
+                *ngIf="getEmployeeAddress.hasError('maxlength')"
+                class="form-text text-danger"
+              >
+                Address Should be less than 25 characters
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <label for="branch_Id" class="form-label">Branch</label>
+
+            <select
+              id="branch_Id"
+              formControlName="branch_Id"
+              name="branch_Id"
+              class="rounded-3 w-100 p-2"
+            >
+              <option value="" disabled selected>Select branch</option>
+
+              <ng-container *ngFor="let branch of branches">
+                <option selected value="{{ branch.id }}">
+                  {{ branch.name }}
+                </option>
+              </ng-container>
+            </select>
+            <ng-container *ngIf="getEmplyeeBranch.touched">
+              <div
+                *ngIf="getEmplyeeBranch.hasError('required')"
+                class="form-text text-danger"
+              >
+                Branch is required
+              </div>
+            </ng-container>
+          </div>
+
+          <input
+            formControlName="role_Id"
+            type="text"
+            class="form-control"
+            hidden
+            id="role_Id"
+            name="role_Id"
+          />
+        </div>
+        <button type="submit" class="button">
+          {{ id != 0 ? "Update" : "Add" }} Employee
+        </button>
+      </form>
+    </div>
+  </div>
+

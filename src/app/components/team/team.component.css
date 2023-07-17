@@ -1,0 +1,27 @@
+.team-members {
+  background-color: var(--section-background);
+}
+
+.team-members .team-box ul {
+  position: absolute;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  background-color: #febe429c;
+  transition: var(--main-transition);
+  -webkit-transition: var(--main-transition);
+  -moz-transition: var(--main-transition);
+  -ms-transition: var(--main-transition);
+  -o-transition: var(--main-transition);
+}
+.team-members .team-box ul li a.button {
+  color: white;
+}
+.team-members .team-box:hover ul {
+  bottom: 0;
+}
+
+.team-members .team-img {
+  height: 250px;
+}

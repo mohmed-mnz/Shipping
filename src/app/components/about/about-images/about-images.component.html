@@ -1,0 +1,64 @@
+<div class="about-images">
+  <div class="row gy-4 align-items-center justify-content-center">
+    <div class="col-6">
+      <img
+        src="assets/about-1.jpg"
+        class="img-fluid w-100 d-block rounded-3"
+        alt="about"
+      />
+    </div>
+    <div class="col-6">
+      <img
+        src="assets/about-2.jpg"
+        class="img-fluid w-100 d-block rounded-3"
+        alt="about"
+      />
+    </div>
+    <div class="col-12">
+      <div class="about-image overflow-hidden position-relative rounded-3">
+        <img
+          src="assets/about-3.jpg"
+          class="img-fluid w-100 d-block rounded-3"
+          alt="about"
+        />
+        <button
+          type="button"
+          class="button rounded-circle fs-5"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          <i class="fa-solid fa-circle-play"></i>
+        </button>
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  FasTrans
+                </h1>
+                <button
+                  type="button"
+                  (click)="stopVideo(myvideo)"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <video #myvideo controls class="w-100 rounded-3">
+                  <source src="assets/shipping.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

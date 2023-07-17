@@ -1,0 +1,230 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">Orders</h3>
+  </div>
+
+  <div class="section-padding show-orders">
+    <div class="container">
+      <div class="head-title">
+        <p>Branch Orders</p>
+        <h3>Manage The Orders</h3>
+      </div>
+      <div class="orders-table overflow-hidden rounded-3 mt-5 bg-white">
+        <div
+          class="order-header p-2 bg-light d-flex flex-wrap justify-content-center align-items-center gap-1"
+        >
+          <button (click)="getAll()" class="button p-1 filterBtn">All</button>
+          <button #New (click)="filterDate(New)" class="button p-1 filterBtn">
+            New
+          </button>
+          <button
+            #Waiting
+            (click)="filterDate(Waiting)"
+            class="button p-1 filterBtn"
+          >
+            Waiting
+          </button>
+          <button
+            #Assigned
+            (click)="filterDate(Assigned)"
+            class="button p-1 filterBtn"
+          >
+            Assigned To Delivery
+          </button>
+          <button
+            #Deliverd
+            (click)="filterDate(Deliverd)"
+            class="button p-1 filterBtn"
+          >
+            Deliverd
+          </button>
+          <button
+            #Reached
+            (click)="filterDate(Reached)"
+            class="button p-1 filterBtn"
+          >
+            Can’t Be Reached
+          </button>
+          <button
+            #Postponed
+            (click)="filterDate(Postponed)"
+            class="button p-1 filterBtn"
+          >
+            Postponed
+          </button>
+          <button
+            #Partially
+            (click)="filterDate(Partially)"
+            class="button p-1 filterBtn"
+          >
+            Partially Delivered
+          </button>
+          <button
+            #Canseled
+            (click)="filterDate(Canseled)"
+            class="button p-1 filterBtn"
+          >
+            Client Canseled
+          </button>
+          <button
+            #RejectedWPay
+            (click)="filterDate(RejectedWPay)"
+            class="button p-1 filterBtn"
+          >
+            Rejected With Payment
+          </button>
+          <button
+            #RejectedWPerc
+            (click)="filterDate(RejectedWPerc)"
+            class="button p-1 filterBtn"
+          >
+            Rejected With Percentage
+          </button>
+          <button
+            #RejectedWithout
+            (click)="filterDate(RejectedWithout)"
+            class="button p-1 filterBtn"
+          >
+            Rejected Without Payment
+          </button>
+        </div>
+        <div class="px-2 py-3 table-responsive">
+          <div
+            class="search-table my-4 d-flex flex-wrap justify-content-center align-items-center gap-3"
+          >
+            <input
+              #search
+              (change)="searchInput(search)"
+              class="search-name rounded-3 p-2 bg-light"
+              type="text"
+              name="search"
+              placeholder="Enter Serial"
+            />
+            <button class="button ms-3 ms-md-0" (click)="getSearch()">
+              Search
+            </button>
+            <button class="button" (click)="resetSearch()">Reset</button>
+          </div>
+          <div class="d-flex align-items-start justify-content-start gap-2 mb-2">
+            <p>Show</p>
+            <select class="p-1 rounded-2" [(ngModel)]="itemsPerPage" >
+              <option selected value="5">5</option>
+              <option  value="10" >10</option>
+              <option value="15" >15</option>
+              <option value="20" >20</option>
+          </select>
+          </div>
+          <table
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            class="table table-hover table-bordered"
+          >
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Serial</th>
+                <th scope="col">Date</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Client</th>
+                <th scope="col">Location</th>
+                <th scope="col">Total Weight</th>
+                <th scope="col">Total Cost</th>
+                <th scope="col">Status</th>
+                <th scope="col">Delivery</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let order of orders | paginate: { itemsPerPage: itemsPerPage , currentPage: p }">
+                <th scope="row">{{ order.id }}</th>
+                <td>{{ order.order_Date }}</td>
+                <td>
+                  {{ order.customer_Name }} <br />
+                  {{ order.customer_Phone }}
+                </td>
+                <td>
+                  {{ order.client_Name }} <br />
+                  {{ order.client_Phone }}
+                </td>
+                <td>
+                  {{ order.branch_Name }} <br />{{ order.governorate_Name }}
+                  <br />
+                  {{ order.city_Name }} <br />
+                  {{ order.client_Village }}
+                </td>
+                <td>{{ order.total_Weight }}</td>
+                <td>{{ order.total_Price }}</td>
+                <td>
+                  {{ order.status }}
+                  <br />
+                  <ng-container
+                    *ngIf="order.status == 'New' || order.status == 'Waiting'"
+                  >
+                    <select
+                      class="p-2 rounded-3"
+                      #statusSelect
+                      name="status"
+                      (change)="updateStatus(order.id, statusSelect.value)"
+                    >
+                      <option value="" selected disabled>Change Status</option>
+                      <option value="New">New</option>
+                      <option value="Waiting">Waiting</option>
+                      <option value="Assigned To Delivery">
+                        Assigned To Delivery
+                      </option>
+                    </select>
+                  </ng-container>
+                </td>
+                <td>
+                  <ng-container *ngIf="order.delivery_Name == null">
+                    <select
+                      #deliverySelect
+                      name="delivery_Id"
+                      (change)="updateDelivery(order.id, deliverySelect.value)"
+                      class="rounded-3 p-2"
+                    >
+                      <option value="" disabled selected>
+                        Select Delivery
+                      </option>
+                      <option
+                        *ngFor="let item of deliveryList"
+                        value="{{ item.id }}"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+                  </ng-container>
+                  <ng-container *ngIf="order.delivery_Name != null">
+                    {{ order.delivery_Name }} <br />
+                    {{ order.delivery_Phone }}
+                  </ng-container>
+                </td>
+                <td>
+                  <a
+                    *ngIf="order.status == 'New' || order.status == 'Waiting'"
+                    class="edit-btn"
+                    [routerLink]="['/order/form', order.id]"
+                    ><i class="fa-solid fa-pen-to-square"></i
+                  ></a>
+                  <button
+                    *ngIf="order.status == 'New' || order.status == 'Waiting'"
+                    class="edit-btn bg-transparent ms-2"
+                  >
+                    <i
+                      (click)="deleteOrder(order.id)"
+                      class="fa-solid fa-trash"
+                    ></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center align-items-center mt-3">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

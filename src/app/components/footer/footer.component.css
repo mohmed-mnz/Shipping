@@ -1,0 +1,23 @@
+.footer {
+  background-image: url("../../../assets/footer-bg.jpg");
+  background-size: cover;
+}
+.footer a.navbar-brand {
+  color: white;
+}
+.footer a.navbar-brand span {
+  color: var(--main-red);
+}
+.footer .footer-links li i {
+  color: var(--main-red);
+}
+.footer .footer-links li a {
+  color: white;
+  transition: var(--main-transition);
+  display: inline-block;
+}
+.footer .footer-links li a:hover {
+  color: var(--main-yellow);
+  transform: translateX(10px);
+  font-weight: bold;
+}

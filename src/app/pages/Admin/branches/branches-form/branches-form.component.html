@@ -1,0 +1,57 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">
+      {{ id != 0 ? "Update" : "Add" }} Branch
+    </h3>
+  </div>
+
+  <div class="section-padding branch-form">
+    <div class="container">
+      <div class="head-title">
+        <p>Branch Data</p>
+        <h3>Always Good To Make Our Business Bigger</h3>
+      </div>
+      <form [formGroup]="BranchForm" (submit)="submit($event)">
+        <div class="row my-5 align-items-start justify-content-center gy-5">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input
+              name="name"
+              formControlName="name"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="name"
+              placeholder="Enter Branch Name"
+            />
+            <ng-container
+              *ngIf="
+                BranchForm.get('name')?.invalid &&
+                BranchForm.get('name')?.touched
+              "
+            >
+              <div
+                *ngIf="BranchForm.get('name')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Branch Name is required
+              </div>
+              <div
+                *ngIf="BranchForm.get('name')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Enter Vaild Branch Name
+              </div>
+            </ng-container>
+            <div *ngIf="NameFlag == true" class="form-text text-danger">
+              Branch Already Exist
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="button">
+          {{ id != 0 ? "Update" : "Add" }} Branch
+        </button>
+      </form>
+    </div>
+  </div>

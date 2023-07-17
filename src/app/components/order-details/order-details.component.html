@@ -1,0 +1,97 @@
+<div data-aos="fade-up" data-aos-duration="1000" class="orderCard">
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Serial</p>
+    <small class="text-white-50">{{ myOrder.id }}</small>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Status</p>
+    <small class="text-white-50">{{ myOrder.status }}</small>
+  </div>
+  <div
+    *ngIf="
+      roleName == 'Admin' || roleName == 'Employee' || roleName == 'Customer'
+    "
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Customer</p>
+    <div class="d-flex flex-column">
+      <small class="text-white-50">{{ myOrder.customer_Name }}</small>
+      <small class="text-white-50">{{ myOrder.customer_Phone }}</small>
+    </div>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Client</p>
+    <div class="d-flex flex-column gap-0">
+      <small class="text-white-50">{{ myOrder.client_Name }}</small>
+      <small class="text-white-50">{{ myOrder.client_Phone }}</small>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      myOrder.delivery_Name != null &&
+      (roleName == 'Admin' || roleName == 'Employee' || roleName == 'Delivery')
+    "
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Delivery</p>
+    <div class="d-flex flex-column gap-0">
+      <small class="text-white-50">{{ myOrder.delivery_Name }}</small>
+      <small class="text-white-50">{{ myOrder.delivery_Phone }}</small>
+    </div>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Branch</p>
+    <small class="text-white-50">{{ myOrder.branch_Name }}</small>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Governroate</p>
+    <small class="text-white-50">{{ myOrder.governorate_Name }}</small>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>City</p>
+    <small class="text-white-50">{{ myOrder.city_Name }}</small>
+  </div>
+  <div
+    *ngIf="myOrder.client_Village != ''"
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Village</p>
+    <small class="text-white-50">{{ myOrder.client_Village }}</small>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Charge Type</p>
+    <small class="text-white-50">{{ myOrder.charge_Type }}</small>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Payment Type</p>
+    <small class="text-white-50">{{ myOrder.payment_Type }}</small>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Total Weight</p>
+    <small class="text-white-50">{{ myOrder.total_Weight }}</small>
+  </div>
+  <div
+    class="d-flex order-data align-items-center justify-content-between gap-1"
+  >
+    <p>Total Price</p>
+    <small class="text-white-50">{{ myOrder.total_Price }}</small>
+  </div>
+</div>

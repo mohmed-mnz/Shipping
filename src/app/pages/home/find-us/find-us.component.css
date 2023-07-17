@@ -1,0 +1,13 @@
+.find-us {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.find-us .find-box {
+  font-size: 18px;
+  font-weight: bold;
+}
+.find-us .find-box i {
+  color: var(--main-red);
+}
+.find-us .find-box p {
+  color: white;
+}

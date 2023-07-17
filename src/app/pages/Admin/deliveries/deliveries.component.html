@@ -1,0 +1,107 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">Deliveries</h3>
+  </div>
+
+  <div class="section-padding show-deliveries">
+    <div class="container">
+      <div class="head-title">
+        <p>Our Deliveries</p>
+        <h3>Always On Time</h3>
+      </div>
+      <div class="deliveries-table overflow-hidden rounded-3 mt-5 bg-white">
+        <div
+          class="delivery-header p-2 bg-light d-flex flex-wrap justify-content-center justify-content-lg-between align-items-center gap-3"
+        >
+          <h3>Deliveries</h3>
+          <div>
+            <a routerLink="/admin/Deliveries/form/0" class="button"
+              >New Delivery<i class="fa-solid fa-user-plus ms-3"></i
+            ></a>
+            <button class="button ms-2" (click)="downloadPDF()">
+              <i class="fa-solid fa-print"></i>
+            </button>
+          </div>
+        </div>
+        <div class="px-2 py-3 table-responsive">
+          <div
+            class="search-table my-4 d-flex flex-wrap justify-content-center align-items-center gap-3"
+          >
+            <input
+              #search
+              (change)="searchInput(search)"
+              class="search-name rounded-3 p-2 bg-light"
+              type="text"
+              name="search"
+              placeholder="Enter Name"
+            />
+            <button class="button ms-3 ms-md-0" (click)="getSearch()">
+              Search
+            </button>
+            <button class="button" (click)="resetSearch()">Reset</button>
+          </div>
+          <div class="d-flex align-items-start justify-content-start gap-2 mb-2">
+            <p>Show</p>
+            <select class="p-1 rounded-2" [(ngModel)]="itemsPerPage" >
+              <option selected value="5">5</option>
+              <option  value="10" >10</option>
+              <option value="15" >15</option>
+              <option value="20" >20</option>
+          </select>
+          </div>
+          <table
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            class="table table-hover table-bordered"
+          >
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Serial</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Branch Name</th>
+                <th scope="col">Company %</th>
+                <th scope="col">Available</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let delivery of deliveries | paginate: { itemsPerPage: itemsPerPage , currentPage: p }">
+                <th scope="row">{{ delivery.id }}</th>
+                <td>{{ delivery.name }}</td>
+                <td>{{ delivery.email }}</td>
+                <td>{{ delivery.phone }}</td>
+                <td>{{ delivery.branch_name }}</td>
+                <td>{{ delivery.companyPercentage }}</td>
+                <td>
+                  <label class="button-available" for="{{ delivery.id }}">
+                    <input
+                      (change)="softDelete(delivery)"
+                      id="{{ delivery.id }}"
+                      [checked]="delivery.available"
+                      type="checkbox"
+                    />
+                    <span class="slider"></span>
+                  </label>
+                </td>
+                <td>
+                  <a
+                    class="edit-btn"
+                    [routerLink]="['/admin/Deliveries/form', delivery.id]"
+                    ><i class="fa-solid fa-pen-to-square"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center align-items-center mt-3">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+

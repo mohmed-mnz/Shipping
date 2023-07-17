@@ -1,0 +1,90 @@
+
+  <div
+    class="page-header section-padding d-flex justify-content-center align-items-center"
+  >
+    <h3 class="display-3 text-white fw-bolder">
+      {{ id != 0 ? "Update" : "Add" }} Governroate
+    </h3>
+  </div>
+
+  <div class="section-padding governroate-form">
+    <div class="container">
+      <div class="head-title">
+        <p>Governroate Data</p>
+        <h3>Always Good To Make Our Business Bigger</h3>
+      </div>
+      <form
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        [formGroup]="GovernratesForm"
+        (ngSubmit)="submitForm($event)"
+      >
+        <div class="row my-5 align-items-start justify-content-center gy-5">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input
+              name="name"
+              formControlName="name"
+              type="text"
+              class="rounded-3 w-100 p-2"
+              id="name"
+              placeholder="Enter Governroate Name"
+            />
+            <ng-container
+              *ngIf="
+                GovernratesForm.get('name')?.invalid &&
+                GovernratesForm.get('name')?.touched
+              "
+            >
+              <div
+                *ngIf="GovernratesForm.get('name')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Governroate Name is required
+              </div>
+              <div
+                *ngIf="GovernratesForm.get('name')?.errors?.['pattern']"
+                class="form-text text-danger"
+              >
+                Enter Vaild Governroate Name
+              </div>
+            </ng-container>
+            <div *ngIf="NameFlag == true" class="form-text text-danger">
+              Governroate Already Exist
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="branch_Id" class="form-label">Name</label>
+            <select
+              id="branch_Id"
+              formControlName="branch_Id"
+              name="branch_Id"
+              class="w-100 rounded-3 p-2"
+            >
+              <option value="" disabled selected>Select branch</option>
+              <ng-container *ngFor="let branch of branchList">
+                <option selected [value]="branch.id">{{ branch.name }}</option>
+              </ng-container>
+            </select>
+            <ng-container
+              *ngIf="
+                GovernratesForm.get('branch_Id')?.invalid &&
+                GovernratesForm.get('branch_Id')?.touched
+              "
+            >
+              <div
+                *ngIf="GovernratesForm.get('branch_Id')?.errors?.['required']"
+                class="form-text text-danger"
+              >
+                Branch Required
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <button type="submit" class="button">
+          {{ id != 0 ? "Update" : "Add" }} Governroate
+        </button>
+      </form>
+    </div>
+  </div>
+

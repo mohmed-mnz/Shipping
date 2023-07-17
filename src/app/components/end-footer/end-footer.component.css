@@ -1,0 +1,8 @@
+.end-footer {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.end-footer span {
+  color: var(--main-red);
+  font-weight: bold;
+}
